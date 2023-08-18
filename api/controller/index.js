@@ -28,20 +28,19 @@ routes.post("/login", bodyParser.json(), (req, res) => {
   users.login(req, res);
 });
 // end of user routes and star of products routes
-
-routes.post("/products", (req, res) => {
+routes.post("/Products", bodyParser.json(), (req, res) => {
+  products.createProduct(req, res);
+});
+routes.get("/Products", (req, res) => {
   products.fetchProducts(req, res);
 });
-routes.get("/products", (req, res) => {
-  products.fetchProducts(req, res);
-});
-routes.get("/product/:id", (req, res) => {
+routes.get("/Products/:id", (req, res) => {
   products.fetchProduct(req, res);
 });
-routes.patch("/product/:id", bodyParser.json(), (req, res) => {
+routes.patch("/Products/:id", bodyParser.json(), (req, res) => {
   products.updateProduct(req, res);
 });
-routes.delete("/product/:id", (req, res) => {
+routes.delete("/Products/:id", (req, res) => {
   products.deleteProduct(req, res);
 });
 
