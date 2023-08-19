@@ -43,20 +43,18 @@ class Products{
         });
       }
 
-      updateProduct(req, res) {
+      updateProduct(req, res){
         const query = `
-            SELECT productID, productName, Descrip, quantity, Price, imageUrl
-            FROM products 
-            WHERE productID = ${req.params.id}
-        `;
-        db.query(query, (err, result) => {
-          if (err) throw err;
-          res.json({
-            status: res.statusCode,
-            result,
-          });
-        });
-      }
+            UPDATE products SET ? WHERE productID = ${req.params.id}
+        `
+        db.query(query, [req.body, req.params.id], (err)=>{
+            if (err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "Product udpated successfully"
+            })
+        })
+    }
 
       createProduct(req, res){
         const query = `
